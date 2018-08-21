@@ -25,4 +25,10 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @RequestMapping(value="a")
+    public @ResponseBody String a(@RequestParam("haha") String haha) {
+        System.out.println(haha);
+        return "你乱码了吗？";
+    }
+
 }
