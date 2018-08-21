@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author 蔡荣镔
@@ -17,6 +19,8 @@ public class User {
     private String password;
     private Byte gender;
     private Integer age;
+    private List<Role> roles;
+    private Set<Access> accesses;
 
     @Id
     @Column(name = "id")
@@ -66,6 +70,22 @@ public class User {
 
     public void setGender(Byte gender) {
         this.gender = gender;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Access> getAccesses() {
+        return accesses;
+    }
+
+    public void setAccesses(Set<Access> accesses) {
+        this.accesses = accesses;
     }
 
     @Basic
