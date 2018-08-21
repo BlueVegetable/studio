@@ -11,6 +11,9 @@
     <title>首页</title>
 </head>
 <body>
-
+<form action="http://192.168.1.100/studio/user/a.do" method="POST" >
+    <input type="text" name="haha" />
+    <input type="submit" value="提交" />
+</form>
 </body>
 </html>
