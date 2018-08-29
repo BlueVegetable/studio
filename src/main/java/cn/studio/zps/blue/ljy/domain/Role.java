@@ -75,4 +75,14 @@ public class Role {
         result = 31 * result + rank;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", title='" + title + '\'' +
+                ", rank=" + rank +
+                '}';
+    }
 }

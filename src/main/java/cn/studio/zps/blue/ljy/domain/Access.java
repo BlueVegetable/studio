@@ -62,4 +62,13 @@ public class Access {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Access{" +
+                "id=" + id +
+                ", access='" + access + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

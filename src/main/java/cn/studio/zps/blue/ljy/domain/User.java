@@ -125,4 +125,33 @@ public class User {
         result = 31 * result + (age != null ? age.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        String result = "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", password='" + password + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
+                '}' + "\n";
+        result += "roles:\n";
+        if(roles==null) {
+            result += "无";
+        } else {
+            for(Role role : roles) {
+                result += role + "\n";
+            }
+        }
+        result += "access:\n";
+        if(accesses==null) {
+            result += "无";
+        } else {
+            for(Access access : accesses) {
+                result += access + "\n";
+            }
+        }
+        return result;
+    }
 }

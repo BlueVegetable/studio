@@ -9,10 +9,10 @@ import cn.studio.zps.blue.ljy.domain.User;
 public interface UserDao {
 
     /**
-     * 通过用户id获取用户的基本信息
+     * 通过用户id获取用户的基本信息,不包括权限
      * @param userId 传入用户id
      * @return 用户的所有信息
      */
-    User getUser(long userId);
+    User getBaseUser(long userId);
 
 }
