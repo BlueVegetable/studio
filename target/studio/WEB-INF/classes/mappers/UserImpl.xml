@@ -8,10 +8,22 @@
         <result column="password" property="password" />
         <result column="gender" property="gender" />
         <result column="age" property="age" />
+        <collection property="roles" ofType="Role">
+            <result column="r_id" property="id" />
+            <result column="role" property="role" />
+            <result column="r_title" property="title" />
+            <result column="rank" property="rank" />
+        </collection>
     </resultMap>
 
-    <select id="getUser" parameterType="Long" resultType="User">
-      select * from user where id=#{id}
+    <select id="getBaseUser" parameterType="Long" resultMap="UserMap" >
+        SELECT user.*
+        ,role.id r_id , role.role role, role.title r_title , role.rank rank
+        FROM USER
+        ,user_role,role
+        WHERE
+        role.id = user_role.roleID AND user_role.userID = user.id
+        AND user.id=#{userId}
     </select>
 
 </mapper>
