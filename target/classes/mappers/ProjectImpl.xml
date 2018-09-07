@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.studio.zps.blue.ljy.dao.ProjectDao">
+    <resultMap id="ProjectMap" type="Project" >
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="state" property="state" />
+        <result column="plan_finish_time" property="planFinishTime" />
+        <result column="finish_time" property="finishTime" />
+        <result column="difficulty_grade" property="difficultyGrade" />
+        <association property="tasks" column="id" select="cn.studio.zps.blue.ljy.dao.TaskDao.getTasksByProjectID"/>
+    </resultMap>
+
+    <insert id="addProject" parameterType="Project" >
+        INSERT INTO project
+        (NAME,state,plan_finish_time,finish_time,difficulty_grade)
+        VALUES
+        (#{name},#{state},#{planFinishTime},#{finishTime},#{difficultyGrade})
+    </insert>
+
+    <delete id="deleteProject" parameterType="Integer" >
+        delete from project where id = #{id}
+    </delete>
+
+    <select id="countTasks" parameterType="Integer" >
+        SELECT COUNT(task_id) FROM task WHERE project_id=#{projectID}
+    </select>
+
+    <select id="getProjectByID" parameterType="Integer" resultMap="ProjectMap">
+        select * from project where id=#{projectID}
+    </select>
+
+    <select id="getAllProjects" resultMap="ProjectMap">
+        select * from project
+    </select>
+
+    <update id="updateProject" parameterType="Project">
+        update project
+        set
+        name=#{name},state=#{state},plan_finish_time=#{planFinishTime},
+        finish_time=#{finishTime},difficulty_grade=#{difficultyGrade}
+        where
+        id=#{id}
+    </update>
+
+</mapper>

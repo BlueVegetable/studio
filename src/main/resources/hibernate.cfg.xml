@@ -9,6 +9,8 @@
       <mapping class="cn.studio.zps.blue.ljy.domain.User"/>
       <mapping class="cn.studio.zps.blue.ljy.domain.Access"/>
       <mapping class="cn.studio.zps.blue.ljy.domain.Role"/>
+      <mapping class="cn.studio.zps.blue.ljy.domain.Project"/>
+      <mapping class="cn.studio.zps.blue.ljy.domain.Task"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

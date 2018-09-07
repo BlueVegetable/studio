@@ -12,10 +12,10 @@ public class AccessDaoTest {
 
     @Autowired
     private AccessDao accessDao;
+    @Autowired
+    private ProjectDao projectDao;
 
-    @Test
-    public void test1() {
-        System.out.println(accessDao.getAccessByRoleID(7));
-    }
+    @Autowired
+    private TaskDao taskDao;
 
 }

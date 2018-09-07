@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.studio.zps.blue.ljy.dao.TaskDao">
+    <resultMap id="TaskMap" type="Task" >
+        <id column="task_id" property="taskId" />
+        <result column="name" property="name" />
+        <result column="state" property="state" />
+        <result column="plan_finish_time" property="planFinishTime" />
+        <result column="finish_time" property="finishTime" />
+        <result column="difficulty_grade" property="difficultyGrade" />
+    </resultMap>
+
+    <insert id="addTask" parameterType="java.util.Map" >
+        INSERT INTO
+        task
+        (NAME,state,plan_finish_time,finish_time,difficulty_grade,project_id)
+        VALUES
+        (#{task.name},#{task.state},#{task.planFinishTime},#{task.finishTime},#{task.difficultyGrade},#{projectID})
+    </insert>
+
+    <delete id="deleteTask" parameterType="Integer">
+        delete from task where task_id=#{taskID}
+    </delete>
+
+    <select id="getTaskByID" parameterType="Integer" resultType="Task">
+        select * from task where task_id=#{taskID}
+    </select>
+
+    <select id="getTasksByProjectID" parameterType="Integer" resultMap="TaskMap">
+        select * from task where project_id=#{projectID}
+    </select>
+
+    <update id="updateTask" parameterType="Task">
+        update task
+        set name = #{name},state=#{state},plan_finish_time=#{planFinishTime}
+        ,finish_time=#{finishTime},difficulty_grade=#{difficultyGrade}
+        where task_id=#{taskId}
+    </update>
+
+</mapper>

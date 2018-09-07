@@ -18,10 +18,6 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-    <context-param>
-        <param-name/>
-        <param-value/>
-    </context-param>
 
     <!-- 定义Spring监听器，加载Spring  -->
   <listener>
@@ -88,13 +84,13 @@
   </filter-mapping>
 
     <!-- 权限限制过滤器 -->
-    <filter>
-        <filter-name>AccessFilter</filter-name>
-        <filter-class>cn.studio.zps.blue.ljy.filters.AccessFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AccessFilter</filter-name>
-        <url-pattern>*.do</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>AccessFilter</filter-name>-->
+        <!--<filter-class>cn.studio.zps.blue.ljy.filters.AccessFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>AccessFilter</filter-name>-->
+        <!--<url-pattern>*.do</url-pattern>-->
+    <!--</filter-mapping>-->
 
 </web-app>
