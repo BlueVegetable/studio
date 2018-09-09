@@ -15,8 +15,16 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectDao projectDao;
 
     @Override
-    public boolean addProject(Project project) {
-        return projectDao.addProject(project)>0;
+    public boolean addProject(Project project,List<Long> userIDs) {
+        int result = projectDao.addProject(project);
+        if(result < 0) {
+            return false;
+        }
+        if(projectDao.linkProjectUser(project.getId(),userIDs)>0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -27,6 +35,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public int countTasks(int projectID) {
         return projectDao.countTasks(projectID);
+    }
+
+    @Override
+    public boolean existProject(String projectName) {
+        return projectDao.existProject(projectName);
     }
 
     @Override

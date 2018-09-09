@@ -11,11 +11,20 @@
         <association property="tasks" column="id" select="cn.studio.zps.blue.ljy.dao.TaskDao.getTasksByProjectID"/>
     </resultMap>
 
-    <insert id="addProject" parameterType="Project" >
+    <insert id="addProject" parameterType="Project" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO project
         (NAME,state,plan_finish_time,finish_time,difficulty_grade)
         VALUES
         (#{name},#{state},#{planFinishTime},#{finishTime},#{difficultyGrade})
+    </insert>
+
+    <insert id="linkProjectUser" parameterType="java.util.Map">
+        insert into user_project
+        (user_id,project_id)
+        values
+        <foreach collection="userIDs" item="userID" index="index" separator=",">
+            (#{userID},#{projectID})
+        </foreach>
     </insert>
 
     <delete id="deleteProject" parameterType="Integer" >
@@ -24,6 +33,10 @@
 
     <select id="countTasks" parameterType="Integer" >
         SELECT COUNT(task_id) FROM task WHERE project_id=#{projectID}
+    </select>
+
+    <select id="existProject" parameterType="String" resultType="Boolean">
+        SELECT (COUNT(id)>0) FROM project WHERE name = #{projectName}
     </select>
 
     <select id="getProjectByID" parameterType="Integer" resultMap="ProjectMap">
