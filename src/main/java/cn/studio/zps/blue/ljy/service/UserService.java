@@ -10,6 +10,10 @@ import java.util.List;
  */
 public interface UserService {
 
+    boolean addUser(User user);
+
+    User getUserByLogin(String userName, String password);
+
     User getUser(long id);
 
     List<User> getUsersByRole(int roleID);

@@ -20,6 +20,16 @@
             <result column="rank" property="rank" />
         </collection>
     </resultMap>
+    <resultMap id="UserAllMap" type="User">
+        <id column="id" property="id" />
+        <result column="userName" property="userName" />
+        <result column="nickName" property="nickName" />
+        <result column="password" property="password" />
+        <result column="gender" property="gender" />
+        <result column="age" property="age" />
+        <association property="roles" column="id" select="cn.studio.zps.blue.ljy.dao.RoleDao.getRoleByAdminID" />
+        <association property="accesses" column="id" select="cn.studio.zps.blue.ljy.dao.AccessDao.getAccessByUserID" />
+    </resultMap>
 
     <select id="getBaseUser" parameterType="Long" resultMap="UserMap" >
         SELECT user.*
@@ -34,5 +44,17 @@
     <select id="getUsersByRole" parameterType="int" resultMap="UserSimpleMap">
         select * from user where id in (select userID from user_role where roleID=#{roleID})
     </select>
+
+    <select id="getUserByLogin" parameterType="java.util.Map" resultMap="UserAllMap">
+        select * from user where userName=#{userName} and password=#{password}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into
+        user
+        (id, userName, nickName, password, gender, age)
+        values
+        (#{id},#{userName},#{nickName},#{password},#{gender},#{age})
+    </insert>
 
 </mapper>

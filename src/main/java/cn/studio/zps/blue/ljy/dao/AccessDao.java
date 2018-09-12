@@ -12,4 +12,6 @@ public interface AccessDao {
 
     Set<Access> getAccessByRoleID(int roleID);
 
+    Set<Access> getAccessByUserID(long userID);
+
 }

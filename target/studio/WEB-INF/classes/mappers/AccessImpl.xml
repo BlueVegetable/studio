@@ -11,4 +11,8 @@
     <select id="getAccessByRoleID" resultMap="AccessMap" parameterType="Integer">
         SELECT * FROM access WHERE id IN ( SELECT accessID FROM role_access WHERE roleID = #{roleID} )
     </select>
+
+    <select id="getAccessByUserID" resultMap="AccessMap" parameterType="Long">
+        SELECT * FROM access WHERE id IN (SELECT accessID FROM role_access WHERE roleID IN (SELECT roleID FROM user_role WHERE userID=#{userID}))
+    </select>
 </mapper>

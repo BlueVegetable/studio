@@ -64,15 +64,6 @@ public class Access {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Access{" +
-                "id=" + id +
-                ", access='" + access + '\'' +
-                ", title='" + title + '\'' +
-                '}';
-    }
-
     @Basic
     @Column(name = "url")
     public String getUrl() {
@@ -81,5 +72,15 @@ public class Access {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Access{" +
+                "id=" + id +
+                ", access='" + access + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
