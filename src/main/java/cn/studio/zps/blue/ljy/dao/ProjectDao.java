@@ -11,9 +11,7 @@ import java.util.List;
  */
 public interface ProjectDao {
 
-    int addProject(Project project);
-
-    int linkProjectUser(@Param("projectID")int projectID,@Param("userIDs") List<Long> userIDs);
+    int addProject(@Param("project") Project project,@Param("userID") Long userID);
 
     int deleteProject(int projectID);
 

@@ -22,18 +22,7 @@ public class ProjectTest {
 
     @Test
     public void test1() {
-        Project project = projectDao.getProjectByID(1);
-        List<Long> userIDs = new ArrayList<>();
-        userIDs.add(1l);
-        userIDs.add(2l);
-        userIDs.add(3l);
-        userIDs.add(4l);
-        userIDs.add(5l);
-        userIDs.add(6l);
-        project.setId(8);
-//        Object result = projectDao.linkProjectUser(3,userIDs);
-        Object result = projectService.addProject(project,userIDs);
-        System.out.println(result);
+        System.out.println(projectService.existProject("实验项目2"));
     }
 
 }

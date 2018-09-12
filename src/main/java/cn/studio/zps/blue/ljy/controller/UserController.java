@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * @author 蔡荣镔
  * @version 1.0
@@ -23,6 +25,11 @@ public class UserController {
     @RequestMapping(value="/getUser",method = RequestMethod.POST)
     public @ResponseBody User getUser(@RequestParam("userID") long id) {
         return userService.getUser(id);
+    }
+
+    @RequestMapping("getUserByRole")
+    public @ResponseBody List<User> getUserByRole(@RequestParam("roleID") int roleID) {
+        return userService.getUsersByRole(roleID);
     }
 
 }

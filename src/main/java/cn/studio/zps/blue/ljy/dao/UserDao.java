@@ -2,6 +2,8 @@ package cn.studio.zps.blue.ljy.dao;
 
 import cn.studio.zps.blue.ljy.domain.User;
 
+import java.util.List;
+
 /**
  * @author 蔡荣镔
  * @version 1.0
@@ -14,5 +16,7 @@ public interface UserDao {
      * @return 用户的所有信息
      */
     User getBaseUser(long userId);
+
+    List<User> getUsersByRole(int roleID);
 
 }

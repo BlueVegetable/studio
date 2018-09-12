@@ -29,7 +29,7 @@ public class ProjectController {
     @RequestMapping("addProject")
     public Map<String,Object> addProject(@RequestBody Map<String,Object> data) {
         Project project = new Project();
-        List<Long> userIDs = (List<Long>) data.get("userIDs");
+        Long userID = Long.parseLong((String) data.get("userID"));
         try {
             BeanUtils.populate(project,data);
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class ProjectController {
             return Response.getResponseMap(1,"该项目存在",null);
         }
         project.setState(INIT_STATE);
-        if(projectService.addProject(project,userIDs)) {
+        if(projectService.addProject(project,userID)) {
             return Response.getResponseMap(1,"添加成功",null);
         } else {
             return Response.getResponseMap(0,"添加失败",null);

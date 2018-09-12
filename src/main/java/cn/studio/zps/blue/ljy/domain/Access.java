@@ -10,6 +10,7 @@ public class Access {
     private int id;
     private String access;
     private String title;
+    private String url;
 
     @Id
     @Column(name = "id")
@@ -70,5 +71,15 @@ public class Access {
                 ", access='" + access + '\'' +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -15,16 +15,8 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectDao projectDao;
 
     @Override
-    public boolean addProject(Project project,List<Long> userIDs) {
-        int result = projectDao.addProject(project);
-        if(result < 0) {
-            return false;
-        }
-        if(projectDao.linkProjectUser(project.getId(),userIDs)>0){
-            return true;
-        } else {
-            return false;
-        }
+    public boolean addProject(Project project,Long userID) {
+        return projectDao.addProject(project,userID) > 0;
     }
 
     @Override

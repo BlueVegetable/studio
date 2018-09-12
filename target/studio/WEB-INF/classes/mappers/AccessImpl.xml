@@ -5,6 +5,7 @@
         <id property="id" column="id" />
         <result property="access" column="access" />
         <result property="title" column="title" />
+        <result property="url" column="url" />
     </resultMap>
 
     <select id="getAccessByRoleID" resultMap="AccessMap" parameterType="Integer">

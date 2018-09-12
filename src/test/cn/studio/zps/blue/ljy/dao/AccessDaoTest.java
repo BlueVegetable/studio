@@ -18,4 +18,9 @@ public class AccessDaoTest {
     @Autowired
     private TaskDao taskDao;
 
+    @Test
+    public void test1() {
+        ;
+    }
+
 }

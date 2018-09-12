@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProjectService {
 
-    boolean addProject(Project project,List<Long> userIDs);
+    boolean addProject(Project project,Long userIDs);
 
     boolean deleteProject(int projectID);
 

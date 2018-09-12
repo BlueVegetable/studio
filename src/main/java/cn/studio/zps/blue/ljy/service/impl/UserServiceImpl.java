@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,5 +33,10 @@ public class UserServiceImpl implements UserService {
         }
         user.setAccesses(accesses);
         return user;
+    }
+
+    @Override
+    public List<User> getUsersByRole(int roleID) {
+        return userDao.getUsersByRole(roleID);
     }
 }

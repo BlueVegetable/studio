@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.studio.zps.blue.ljy.dao.UserDao">
+    <resultMap id="UserSimpleMap" type="User" >
+        <id column="id" property="id" />
+        <result column="userName" property="userName" />
+        <result column="nickName" property="nickName" />
+    </resultMap>
     <resultMap id="UserMap" type="User" >
         <id column="id" property="id" />
         <result column="userName" property="userName" />
@@ -24,6 +29,10 @@
         WHERE
         role.id = user_role.roleID AND user_role.userID = user.id
         AND user.id=#{userId}
+    </select>
+
+    <select id="getUsersByRole" parameterType="int" resultMap="UserSimpleMap">
+        select * from user where id in (select userID from user_role where roleID=#{roleID})
     </select>
 
 </mapper>
