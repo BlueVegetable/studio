@@ -4,7 +4,16 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 public class MD5 {
+    /**
+     * 将字符串进行MD5加密
+     * @param value 待加密的字符串
+     * @return 加密后的字符串
+     */
 	public static String toMD5(String value) {
 		byte[] secretBytes;
 		

@@ -1,43 +1,20 @@
 package cn.studio.zps.blue.ljy.utils;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 public class Response {
-    public static void sendJSONObject(Object object,HttpServletResponse response) throws IOException {
-        JSONObject json=JSONObject.fromObject(object);
-        write(json,response);
-    }
-    public static void sendJSONObject(Map<String,Object> map , HttpServletResponse response) throws IOException {
-        JSONObject json=JSONObject.fromObject(map);
-        write(json,response);
-    }
-    public static void sendJSONArray(Object array,HttpServletResponse response) throws IOException {
-        JSONArray jsonArray = JSONArray.fromObject(array);
-        write(jsonArray,response);
-    }
-    public static void writeString(String value,HttpServletResponse response) throws IOException {
-        write(value,response);
-    }
-    private static void write(JSON json,HttpServletResponse response) throws IOException {
-        PrintWriter writer=response.getWriter();
-        writer.println(json);
-        writer.flush();
-        writer.close();
-    }
-    private static void write(String value,HttpServletResponse response) throws IOException {
-        PrintWriter writer=response.getWriter();
-        writer.println(value);
-        writer.flush();
-        writer.close();
-    }
+    /**
+     * 获取一定返回格式的结果集
+     * @param code 表示结果集状态，规定成功为0，失败为1
+     * @param msg 表示结果集的信息，规定成功时为"***成功"，规定失败为"***失败"
+     * @param data 表示结果集返回的数据
+     * @return 结果集
+     */
     public static Map<String,Object> getResponseMap(int code,String msg,Object data) {
         Map<String,Object> responseMap=new HashMap<>(3);
         responseMap.put("code",code);

@@ -6,7 +6,10 @@ import cn.studio.zps.blue.ljy.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -35,17 +38,17 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getProjectById(int projectID) {
+    public Map<String,Object> getProjectById(int projectID) {
         return projectDao.getProjectByID(projectID);
     }
 
     @Override
-    public List<Project> getAllProjects() {
+    public List<Map<String,Object>> getAllProjects() {
         return projectDao.getAllProjects();
     }
 
     @Override
-    public boolean updateProject(Project project) {
-        return projectDao.updateProject(project)>0;
+    public boolean updateProject(Project project,Long principalID) {
+        return projectDao.updateProject(project,principalID)>0;
     }
 }

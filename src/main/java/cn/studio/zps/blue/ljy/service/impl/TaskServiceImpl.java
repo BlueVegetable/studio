@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -15,13 +19,13 @@ public class TaskServiceImpl implements TaskService {
     private TaskDao taskDao;
 
     @Override
-    public int addTask(Task task) {
-        return 0;
+    public boolean addTask(int projectID, Task task) {
+        return taskDao.addTask(projectID,task)>0;
     }
 
     @Override
-    public int deleteTask(int task) {
-        return 0;
+    public boolean deleteTask(int taskID) {
+        return taskDao.deleteTask(taskID)>0;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public int updateTask(Task task) {
-        return 0;
+    public boolean updateTask(Task task) {
+        return taskDao.updateTask(task)>0;
     }
 }

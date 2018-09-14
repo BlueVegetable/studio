@@ -4,6 +4,7 @@ import cn.studio.zps.blue.ljy.domain.Project;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 蔡荣镔
@@ -19,10 +20,10 @@ public interface ProjectDao {
 
     boolean existProject(String projectName);
 
-    Project getProjectByID(int projectID);
+    Map<String,Object> getProjectByID(int projectID);
 
-    List<Project> getAllProjects();
+    List<Map<String,Object>> getAllProjects();
 
-    int updateProject(Project project);
+    int updateProject(@Param("project") Project project,@Param("principalID") Long principalID);
 
 }

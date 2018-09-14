@@ -4,11 +4,21 @@ import cn.studio.zps.blue.ljy.domain.Task;
 
 import java.util.List;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 public interface TaskService {
 
-    int addTask(Task task);
+    /**
+     * 添加任务
+     * @param projectID 任务所属项目ID
+     * @param task 任务本体
+     * @return 添加的任务的数量
+     */
+    boolean addTask(int projectID,Task task);
 
-    int deleteTask(int task);
+    boolean deleteTask(int taskID);
 
     List<Task> getTasksByProjectID(int projectID);
 
@@ -16,6 +26,6 @@ public interface TaskService {
 
     int countTasksByAdminID(int adminID);
 
-    int updateTask(Task task);
+    boolean updateTask(Task task);
 
 }

@@ -27,11 +27,18 @@ public interface UserDao {
     int addUser(User user);
 
     /**
-     * 通过用户id获取用户的基本信息,不包括权限
-     * @param userId 传入用户id
+     * 通过用户id获取用户的简单信息：id,名字,昵称
+     * @param userID 用户id
+     * @return 用户简单信息
+     */
+    User getSimpleUserByID(long userID);
+
+    /**
+     * 通过用户id获取用户的所有信息
+     * @param userID 传入用户id
      * @return 用户的所有信息
      */
-    User getBaseUser(long userId);
+    User getUser(long userID);
 
     /**
      * 通过角色获取该类角色的用户

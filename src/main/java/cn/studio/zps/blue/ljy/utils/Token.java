@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * @author 蔡荣镔
+ * @version 1.0
  */
 public class Token {
 
@@ -27,6 +28,11 @@ public class Token {
         header.put("alg","HS256");
     }
 
+    /**
+     * 创建token
+     * @param object 任意对象
+     * @return 将对象转化为json字符串再加密后的字符串
+     */
     public static String createToken(Object object) {
         JSONObject json = JSONObject.fromObject(object);
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -40,6 +46,12 @@ public class Token {
         return builder.compact();
     }
 
+    /**
+     * 将加密后的字符串重新转化为对象
+     * @param jwt 加密后的字符串
+     * @param className 将要转化的对象的class
+     * @return 若对象正确，返回对象;若转化失败，返回null
+     */
     public static Object parseToken(String jwt,Class className) {
         Claims claims;
         try{

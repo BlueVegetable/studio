@@ -50,9 +50,14 @@ public class UserController {
         return Response.getResponseMap(0,"注销成功",null);
     }
 
+    @RequestMapping(value="/getSimpleUser",method = RequestMethod.POST)
+    public @ResponseBody User getSimpleUser(@RequestParam("userID") long id) {
+        return userService.getUser(id,UserService.GET_USER_SIMPLE_INFO);
+    }
+
     @RequestMapping(value="/getUser",method = RequestMethod.POST)
     public @ResponseBody User getUser(@RequestParam("userID") long id) {
-        return userService.getUser(id);
+        return userService.getUser(id,UserService.GET_USER_ALL_INFO);
     }
 
     @RequestMapping("getUserByRole")

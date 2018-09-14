@@ -11,6 +11,12 @@ import java.util.List;
  */
 public interface TaskDao {
 
+    /**
+     * 添加任务
+     * @param projectID 任务所属项目ID
+     * @param task 任务本体
+     * @return 添加的任务的数量
+     */
     int addTask(@Param("projectID") int projectID, @Param("task") Task task);
 
     int deleteTask(int taskID);

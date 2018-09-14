@@ -15,13 +15,16 @@ public interface UserService {
      */
     int TOURIST_ROLE_ID = 9;
 
+    byte GET_USER_ALL_INFO=0;
+    byte GET_USER_SIMPLE_INFO=1;
+
     boolean addUser(User user);
 
     User getUserByLogin(String userName, String password);
 
     User getTourist();
 
-    User getUser(long id);
+    User getUser(long id, byte all);
 
     List<User> getUsersByRole(int roleID);
 

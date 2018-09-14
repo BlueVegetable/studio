@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("project")
 public class ProjectController {
@@ -48,12 +54,31 @@ public class ProjectController {
         }
     }
 
+    @RequestMapping("deleteProject")
+    public @ResponseBody Map<String,Object> deleteProject(@RequestParam("projectID") Integer projectID) {
+        if(projectService.deleteProject(projectID)) {
+            return Response.getResponseMap(0,"删除成功",null);
+        } else {
+            return Response.getResponseMap(1,"删除失败",null);
+        }
+    }
+
+    @RequestMapping("getProjectByID")
+    public @ResponseBody Map<String,Object> getProjectByID(@RequestParam("projectID") int projectID){
+        Map<String,Object> project = projectService.getProjectById(projectID);
+        if(project==null){
+            return Response.getResponseMap(1,"项目不存在",null);
+        } else {
+            return Response.getResponseMap(0,"获取成功",project);
+        }
+    }
+
     @ResponseBody
     @RequestMapping("getAllProjects")
     public Map<String,Object> getAllProjects() {
         Map<String,Object> result = Response.getResponseMap(1,"数据访问出错",null);
         try {
-            List<Project> projects = projectService.getAllProjects();
+            List<Map<String,Object>> projects = projectService.getAllProjects();
             result.put("code",0);
             result.put("msg","");
             result.put("count",projects.size());
@@ -65,12 +90,20 @@ public class ProjectController {
         return result;
     }
 
-    @RequestMapping("deleteProject")
-    public @ResponseBody Map<String,Object> deleteProject(@RequestParam("projectID") Integer projectID) {
-        if(projectService.deleteProject(projectID)) {
-            return Response.getResponseMap(0,"删除成功",null);
+    @RequestMapping("updateProject")
+    public @ResponseBody Map<String,Object> updateProject(@RequestBody Map<String,Object> data) throws InvocationTargetException, IllegalAccessException {
+        Project project = new Project();
+        BeanUtils.populate(project,data);
+        Long principalID = Long.parseLong((String) data.get("principalID"));
+        if(project.getState()==2) {
+            project.setFinishTime(new Timestamp(System.currentTimeMillis()));
+        } else if(project.getState()==1) {
+            project.setFinishTime(null);
+        }
+        if(projectService.updateProject(project,principalID)) {
+            return Response.getResponseMap(0,"修改成功",null);
         } else {
-            return Response.getResponseMap(1,"删除失败",null);
+            return Response.getResponseMap(1,"修改失败",null);
         }
     }
 

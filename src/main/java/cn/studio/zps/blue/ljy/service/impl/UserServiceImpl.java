@@ -51,14 +51,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(long id) {
-        final User user = userDao.getBaseUser(id);
-        Set<Access> accesses = new HashSet<>();
-        for(Role role : user.getRoles()) {
-            accesses.addAll(accessDao.getAccessByRoleID(role.getId()));
+    public User getUser(long id,byte all) {
+        if(all == GET_USER_ALL_INFO) {
+            return userDao.getUser(id);
+        } else if(all == GET_USER_SIMPLE_INFO) {
+            return userDao.getSimpleUserByID(id);
+        } else {
+            return null;
         }
-        user.setAccesses(accesses);
-        return user;
     }
 
     @Override

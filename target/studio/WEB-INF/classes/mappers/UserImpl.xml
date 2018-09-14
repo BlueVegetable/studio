@@ -6,20 +6,6 @@
         <result column="userName" property="userName" />
         <result column="nickName" property="nickName" />
     </resultMap>
-    <resultMap id="UserMap" type="User" >
-        <id column="id" property="id" />
-        <result column="userName" property="userName" />
-        <result column="nickName" property="nickName" />
-        <result column="password" property="password" />
-        <result column="gender" property="gender" />
-        <result column="age" property="age" />
-        <collection property="roles" ofType="Role">
-            <result column="r_id" property="id" />
-            <result column="role" property="role" />
-            <result column="r_title" property="title" />
-            <result column="rank" property="rank" />
-        </collection>
-    </resultMap>
     <resultMap id="UserAllMap" type="User">
         <id column="id" property="id" />
         <result column="userName" property="userName" />
@@ -31,24 +17,6 @@
         <association property="accesses" column="id" select="cn.studio.zps.blue.ljy.dao.AccessDao.getAccessByUserID" />
     </resultMap>
 
-    <select id="getBaseUser" parameterType="Long" resultMap="UserMap" >
-        SELECT user.*
-        ,role.id r_id , role.role role, role.title r_title , role.rank rank
-        FROM USER
-        ,user_role,role
-        WHERE
-        role.id = user_role.roleID AND user_role.userID = user.id
-        AND user.id=#{userId}
-    </select>
-
-    <select id="getUsersByRole" parameterType="int" resultMap="UserSimpleMap">
-        select * from user where id in (select userID from user_role where roleID=#{roleID})
-    </select>
-
-    <select id="getUserByLogin" parameterType="java.util.Map" resultMap="UserAllMap">
-        select * from user where userName=#{userName} and password=#{password}
-    </select>
-
     <insert id="addUser" parameterType="User">
         insert into
         user
@@ -56,5 +24,21 @@
         values
         (#{id},#{userName},#{nickName},#{password},#{gender},#{age})
     </insert>
+
+    <select id="getSimpleUserByID" parameterType="Long" resultType="User">
+        select id,userName,nickName from user where id=#{userID}
+    </select>
+
+    <select id="getUser" parameterType="Long" resultMap="UserAllMap" >
+        select * from user where id=#{userID}
+    </select>
+
+    <select id="getUsersByRole" parameterType="int" resultMap="UserSimpleMap">
+        select id,userName,nickName from user where id in (select userID from user_role where roleID=#{roleID})
+    </select>
+
+    <select id="getUserByLogin" parameterType="java.util.Map" resultMap="UserAllMap">
+        select * from user where userName=#{userName} and password=#{password}
+    </select>
 
 </mapper>

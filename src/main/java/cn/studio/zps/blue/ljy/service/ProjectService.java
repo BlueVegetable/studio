@@ -3,6 +3,7 @@ package cn.studio.zps.blue.ljy.service;
 import cn.studio.zps.blue.ljy.domain.Project;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProjectService {
 
@@ -14,10 +15,10 @@ public interface ProjectService {
 
     boolean existProject(String projectName);
 
-    Project getProjectById(int projectID);
+    Map<String,Object> getProjectById(int projectID);
 
-    List<Project> getAllProjects();
+    List<Map<String,Object>> getAllProjects();
 
-    boolean updateProject(Project project);
+    boolean updateProject(Project project,Long principalID);
 
 }
