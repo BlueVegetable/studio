@@ -1075,34 +1075,41 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="268" parent="244" name="PRIMARY">
+    <column id="268" parent="244" name="exist">
+      <Position>5</Position>
+      <Comment>不可删除</Comment>
+      <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="269" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="269" parent="245" name="roleID">
+    <column id="270" parent="245" name="roleID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="245" name="accessID">
+    <column id="271" parent="245" name="accessID">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="271" parent="245" name="accessID">
+    <index id="272" parent="245" name="accessID">
       <ColNames>accessID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="272" parent="245" name="PRIMARY">
+    <key id="273" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roleID
 accessID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="273" parent="245" name="role_access_ibfk_1">
+    <foreign-key id="274" parent="245" name="role_access_ibfk_1">
       <ColNames>roleID</ColNames>
       <RefSchemaName>studio</RefSchemaName>
       <RefTableName>role</RefTableName>
@@ -1110,7 +1117,7 @@ accessID</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="274" parent="245" name="role_access_ibfk_2">
+    <foreign-key id="275" parent="245" name="role_access_ibfk_2">
       <ColNames>accessID</ColNames>
       <RefSchemaName>studio</RefSchemaName>
       <RefTableName>access</RefTableName>
@@ -1118,26 +1125,26 @@ accessID</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="275" parent="246" name="task_id">
+    <column id="276" parent="246" name="task_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="246" name="name">
+    <column id="277" parent="246" name="name">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="246" name="state">
+    <column id="278" parent="246" name="state">
       <Position>3</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="246" name="plan_finish_time">
+    <column id="279" parent="246" name="plan_finish_time">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
@@ -1145,40 +1152,40 @@ accessID</ColNames>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="279" parent="246" name="finish_time">
+    <column id="280" parent="246" name="finish_time">
       <Position>5</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="246" name="difficulty_grade">
+    <column id="281" parent="246" name="difficulty_grade">
       <Position>6</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="246" name="project_id">
+    <column id="282" parent="246" name="project_id">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="282" parent="246" name="project_id">
+    <index id="283" parent="246" name="project_id">
       <ColNames>project_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="283" parent="246" name="PRIMARY">
+    <key id="284" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>task_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="284" parent="246" name="task_ibfk_1">
+    <foreign-key id="285" parent="246" name="task_ibfk_1">
       <ColNames>project_id</ColNames>
       <RefSchemaName>studio</RefSchemaName>
       <RefTableName>project</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="285" parent="247" name="id">
+    <column id="286" parent="247" name="id">
       <Position>1</Position>
       <Comment>用户id</Comment>
       <DataType>bigint(20)|0s</DataType>
@@ -1186,66 +1193,66 @@ accessID</ColNames>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="247" name="userName">
+    <column id="287" parent="247" name="userName">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="247" name="nickName">
+    <column id="288" parent="247" name="nickName">
       <Position>3</Position>
       <Comment>用户昵称</Comment>
       <DataType>varchar(60)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="247" name="password">
+    <column id="289" parent="247" name="password">
       <Position>4</Position>
       <Comment>用户密码(非明文)</Comment>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="247" name="gender">
+    <column id="290" parent="247" name="gender">
       <Position>5</Position>
       <Comment>用户性别(0为女,1为男)</Comment>
       <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="247" name="age">
+    <column id="291" parent="247" name="age">
       <Position>6</Position>
       <Comment>年龄</Comment>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="291" parent="247" name="PRIMARY">
+    <key id="292" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="292" parent="248" name="userID">
+    <column id="293" parent="248" name="userID">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="248" name="roleID">
+    <column id="294" parent="248" name="roleID">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="294" parent="248" name="roleID">
+    <index id="295" parent="248" name="roleID">
       <ColNames>roleID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="295" parent="248" name="PRIMARY">
+    <key id="296" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID
 roleID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="296" parent="248" name="user_role_ibfk_1">
+    <foreign-key id="297" parent="248" name="user_role_ibfk_1">
       <ColNames>userID</ColNames>
       <RefSchemaName>studio</RefSchemaName>
       <RefTableName>user</RefTableName>
@@ -1253,7 +1260,7 @@ roleID</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="297" parent="248" name="user_role_ibfk_2">
+    <foreign-key id="298" parent="248" name="user_role_ibfk_2">
       <ColNames>roleID</ColNames>
       <RefSchemaName>studio</RefSchemaName>
       <RefTableName>role</RefTableName>

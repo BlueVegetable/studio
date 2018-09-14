@@ -1,6 +1,7 @@
 package cn.studio.zps.blue.ljy.service.impl;
 
 import cn.studio.zps.blue.ljy.dao.AccessDao;
+import cn.studio.zps.blue.ljy.dao.RoleDao;
 import cn.studio.zps.blue.ljy.dao.UserDao;
 import cn.studio.zps.blue.ljy.domain.Access;
 import cn.studio.zps.blue.ljy.domain.Role;
@@ -10,6 +11,7 @@ import cn.studio.zps.blue.ljy.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     @Autowired
     private AccessDao accessDao;
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public boolean addUser(User user) {
@@ -34,6 +38,16 @@ public class UserServiceImpl implements UserService {
     public User getUserByLogin(String userName, String password) {
         password = MD5.toMD5(password);
         return userDao.getUserByLogin(userName,password);
+    }
+
+    @Override
+    public User getTourist() {
+        User user = new User();
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleDao.getRole(TOURIST_ROLE_ID));
+        user.setRoles(roles);
+        user.setAccesses(accessDao.getAccessByRoleID(TOURIST_ROLE_ID));
+        return user;
     }
 
     @Override

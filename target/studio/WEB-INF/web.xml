@@ -84,13 +84,21 @@
   </filter-mapping>
 
     <!-- 权限限制过滤器 -->
-    <!--<filter>-->
-        <!--<filter-name>AccessFilter</filter-name>-->
-        <!--<filter-class>cn.studio.zps.blue.ljy.filters.AccessFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>AccessFilter</filter-name>-->
-        <!--<url-pattern>*.do</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>DelegatingFilterProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>AccessFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>DelegatingFilterProxy</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 
 </web-app>

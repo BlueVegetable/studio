@@ -13,8 +13,9 @@
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<!-- 自动扫描 -->
-	<context:component-scan base-package="cn.studio.zps.blue.ljy.service" />
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="cn.studio.zps.blue.ljy.service" />
+    <context:component-scan base-package="cn.studio.zps.blue.ljy.filters" />
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
 
@@ -99,6 +100,8 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+    <bean id="AccessFilter" class="cn.studio.zps.blue.ljy.filters.AccessFilter" />
+
 	<!-- 配置事务通知属性 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<!-- 定义事务传播属性 -->
@@ -123,7 +126,7 @@
 	<!-- 配置事务切面 -->
 	<aop:config>
 		<aop:pointcut id="serviceOperation"
-					  expression="execution(* cn.blue.service.*.*(..))" />
+					  expression="execution(* cn.studio.zps.blue.ljy.service.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
 	</aop:config>
 </beans>

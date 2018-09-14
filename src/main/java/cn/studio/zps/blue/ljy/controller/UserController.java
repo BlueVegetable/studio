@@ -3,6 +3,7 @@ package cn.studio.zps.blue.ljy.controller;
 import cn.studio.zps.blue.ljy.domain.User;
 import cn.studio.zps.blue.ljy.service.UserService;
 import cn.studio.zps.blue.ljy.utils.Response;
+import cn.studio.zps.blue.ljy.utils.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class UserController {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
+            session.setAttribute("identity", Token.createToken(user));
             Map<String,Object> result = Response.getResponseMap(0,"登录成功",user);
             return result;
         }

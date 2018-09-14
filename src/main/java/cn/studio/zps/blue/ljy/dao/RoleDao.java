@@ -17,4 +17,11 @@ public interface RoleDao {
      */
     List<Role> getRoleByAdminID(long amindID);
 
+    /**
+     * 根据角色ID获取角色
+     * @param roleID 角色ID
+     * @return 角色
+     */
+    Role getRole(int roleID);
+
 }
