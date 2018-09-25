@@ -8,14 +8,17 @@
         <result column="plan_finish_time" property="planFinishTime" />
         <result column="finish_time" property="finishTime" />
         <result column="difficulty_grade" property="difficultyGrade" />
+        <result column="principalID" property="principalID" />
     </resultMap>
 
     <insert id="addTask" parameterType="java.util.Map" >
         INSERT INTO
         task
-        (NAME,state,plan_finish_time,finish_time,difficulty_grade,project_id)
+        (NAME,state,plan_finish_time,finish_time,
+        difficulty_grade,project_id,principalID)
         VALUES
-        (#{task.name},#{task.state},#{task.planFinishTime},#{task.finishTime},#{task.difficultyGrade},#{projectID})
+        (#{task.name},#{task.state},#{task.planFinishTime},#{task.finishTime},
+        #{task.difficultyGrade},#{projectID},#{task.principalID})
     </insert>
 
     <delete id="deleteTask" parameterType="Integer">
@@ -34,6 +37,7 @@
         update task
         set name = #{name},state=#{state},plan_finish_time=#{planFinishTime}
         ,finish_time=#{finishTime},difficulty_grade=#{difficultyGrade}
+        ,principalID=#{principalID}
         where task_id=#{taskId}
     </update>
 

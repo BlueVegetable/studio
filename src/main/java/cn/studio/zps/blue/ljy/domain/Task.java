@@ -6,9 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
+/**
+ * @author 蔡荣镔
+ * @version 1.0
+ */
 @Entity
 public class Task {
     private int taskId;
+    private long principalID;
     private String name;
     private short state;
     private Timestamp planFinishTime;
@@ -73,6 +78,14 @@ public class Task {
 
     public void setDifficultyGrade(short difficultyGrade) {
         this.difficultyGrade = difficultyGrade;
+    }
+
+    public long getPrincipalID() {
+        return principalID;
+    }
+
+    public void setPrincipalID(long principalID) {
+        this.principalID = principalID;
     }
 
     @Override
